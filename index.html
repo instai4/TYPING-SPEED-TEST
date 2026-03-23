@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TYPING_TEST.exe | by Anurag Rajput</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Entry Screen -->
+<div id="entry-screen">
+  <div class="entry-badge">
+    <div class="entry-badge-dot"></div>
+    SYSTEM READY // BENCHMARK MODULE
+  </div>
+
+  <div class="entry-title">
+    TYPING<br><span>SPEED</span><br>TEST
+  </div>
+
+  <p class="entry-sub">> Test your WPM &nbsp;|&nbsp; 3 difficulty modes &nbsp;|&nbsp; Real-time stats</p>
+
+  <div class="entry-stats-row">
+    <div class="entry-stat">
+      <div class="es-label">Modes</div>
+      <div class="es-value">3</div>
+    </div>
+    <div class="entry-stat">
+      <div class="es-label">Max Time</div>
+      <div class="es-value">120s</div>
+    </div>
+    <div class="entry-stat">
+      <div class="es-label">Paragraphs</div>
+      <div class="es-value">10</div>
+    </div>
+  </div>
+
+  <button class="entry-btn" id="entry-btn">
+    <i class="ri-play-fill"></i> ARE YOU READY?
+  </button>
+
+  <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:#333;">
+    Built by <a href="https://instai4.github.io/PORT-FOLIO/" style="color: #33FF57;" target="_blank">ANURAG RAJPUT</a> &nbsp;·&nbsp;<a href="https://github.com/instai4" style="color: #33FF57;" target="_blank">instai4.github.io</a>
+  </span>
+</div>
+  <div id="cursor"></div>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-dots">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    </div>
+    <span class="topbar-title">TYPING_TEST.exe &nbsp;// &nbsp;WPM BENCHMARK</span>
+    <span class="topbar-badge">ANURAG.exe</span>
+  </div>
+
+  <!-- Main card -->
+  <div class="container">
+
+    <!-- Result overlay -->
+    <div class="result-overlay" id="result-overlay">
+      <h2>TIME'S<br><span>UP!</span></h2>
+      <div class="result-grid">
+        <div class="result-cell">
+          <div class="rc-label">WPM</div>
+          <div class="rc-value g" id="res-wpm">0</div>
+        </div>
+        <div class="result-cell">
+          <div class="rc-label">CPM</div>
+          <div class="rc-value y" id="res-cpm">0</div>
+        </div>
+        <div class="result-cell">
+          <div class="rc-label">Accuracy</div>
+          <div class="rc-value g" id="res-acc">100%</div>
+        </div>
+        <div class="result-cell">
+          <div class="rc-label">Mistakes</div>
+          <div class="rc-value p" id="res-err">0</div>
+        </div>
+      </div>
+      <p class="result-tagline" id="res-tagline">Keep practicing, soldier.</p>
+      <button class="play-again-btn" id="overlay-reset">
+        <i class="ri-refresh-line"></i> PLAY AGAIN
+      </button>
+    </div>
+
+    <!-- Header -->
+    <div class="header-row">
+      <div class="title-block">
+        <h1>TYPING<br><span>SPEED</span> TEST</h1>
+        <p>> Click text area or press any key to start</p>
+      </div>
+      <div class="timer-display">
+        <div class="t-label">Time Left</div>
+        <div class="t-value" id="time-val">60</div>
+      </div>
+    </div>
+
+    <!-- Difficulty -->
+    <div class="diff-row">
+      <button class="diff-btn active" data-time="60" onclick="setDifficulty(this)">60s</button>
+      <button class="diff-btn" data-time="30" onclick="setDifficulty(this)">30s</button>
+      <button class="diff-btn" data-time="120" onclick="setDifficulty(this)">120s</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-label">WPM</div>
+        <div class="stat-value highlight" id="wpm-val">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">CPM</div>
+        <div class="stat-value" id="cpm-val">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mistakes</div>
+        <div class="stat-value errors" id="err-val">0</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Typing box -->
+    <div class="typing-box" id="typing-box">
+      <input type="text" class="input-field" id="inp-field">
+      <div class="typing-text">
+        <p id="typing-p"></p>
+      </div>
+    </div>
+
+    <!-- Accuracy -->
+    <div class="accuracy-row">
+      <span class="accuracy-label">Accuracy</span>
+      <div class="acc-track"><div class="acc-fill" id="acc-fill"></div></div>
+      <span class="acc-value" id="acc-val">100%</span>
+    </div>
+
+    <!-- Button -->
+    <div class="btn-row">
+      <button class="try-btn" id="try-btn">
+        <i class="ri-refresh-line"></i> TRY AGAIN
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-bar">
+    <span class="footer-credit">
+      Built by <a href="https://instai4.github.io/PORT-FOLIO/" target="_blank">ANURAG RAJPUT</a>
+      &nbsp;// Data Science Student @ DBUU
+    </span>
+    <div class="footer-links">
+      <a href="https://github.com/instai4" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/anurag-singh-43230a380/" target="_blank"><i class="ri-linkedin-fill"></i> LinkedIn</a>
+      <a href="https://instai4.github.io/PORT-FOLIO/" target="_blank"><i class="ri-global-line"></i> Portfolio</a>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
